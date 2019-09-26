@@ -1,14 +1,24 @@
 <template>
-  <div>
-    <span v-if="!user">No developer profile found for this requester.</span>
-    <template v-else> 
-        <span>{{ user.email }}</span>
-        <img v-if="user.github" src="../assets/github_octocat.png">
-        <img v-if="user.linkedin" src="../assets/linkedin.png">
-    </template>
-  </div>
+    <div>
+        <p v-if="!user">No developer profile found for this requester.</p>
+        <template v-else>
+            <p><a :href="'mailto:' + user.email" target="_blank" >{{ user.email }}</a></p>
+            <a v-if="user.github" :href="'https://github.com/' + user.github" target="_blank">
+                <img src="../assets/github_octocat.png">
+            </a>
+            <a v-if="user.linkedin" :href="'https://www.linkedin.com/in/' + user.linkedin" target="_blank">
+                <img  src="../assets/linkedin.png">
+            </a>
+        </template>
+    </div>
 </template>
 
+<style scoped>
+a {
+    color: inherit;
+    text-decoration: none;
+}
+</style>
 <script>
 export default {
     props: {
