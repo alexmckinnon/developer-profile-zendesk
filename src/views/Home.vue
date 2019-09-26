@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Profile :email="email"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Profile from '@/components/Profile.vue'
+import client from '@/utils/zafclient.js'
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+    components: {
+        Profile
+    },
+    data() {
+        return {
+            email: ''
+        }
+    },
+    mounted() {
+        client.get('ticket.requester.email').then((data) => {
+            this.email = data.ticket.requester.email;
+        });
+    }
 }
 </script>
