@@ -1,3 +1,8 @@
 module.exports = {
-  lintOnSave: false
+    outputDir: 'dist/assets',
+    configureWebpack: {
+    output: {
+        filename: 'app.js'
+    }
+  }
 }
