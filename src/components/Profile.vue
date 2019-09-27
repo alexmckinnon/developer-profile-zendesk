@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p v-if="!user">No developer profile found for this requester.</p>
+        <p v-if="!user.email">No developer profile found for this requester.</p>
         <template v-else>
             <p><a :href="'mailto:' + user.email" target="_blank" >{{ user.email }}</a></p>
             <a v-if="user.github" :href="'https://github.com/' + user.github" target="_blank">
