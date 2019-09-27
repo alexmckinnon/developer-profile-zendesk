@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-/dist
+dist/assets
+dist/tmp
+*.zat
 
 # local env files
 .env.local
