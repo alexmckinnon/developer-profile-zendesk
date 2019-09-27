@@ -24,15 +24,19 @@ export default {
         }
     },
     mounted() {
-        client.get('ticket.requester.email').then((data) => {
-            let email = data['ticket.requester.email'];
-            this.getProfileData(email);
+        client.metadata().then((metadata) => {
+            this.apiUrl = metadata.settings.endpoint;
+            client.get('ticket.requester.email').then((data) => {
+                let email = data['ticket.requester.email'];
+                this.getProfileData(email);
+            });
         });
+
     },
     methods: {
         getProfileData(email) {
             try {
-                axios.get(apiUrl + email, {
+                axios.get(this.apiUrl + email, {
                     validateStatus: false,
                     headers: {'Access-Control-Allow-Origin': '*'}
                 }).then(response => {
